@@ -49,6 +49,16 @@ body {
 	border: 1px solid black; /* Borde para resaltar los cuadros */
 }
 
+.chair:hover {
+	background-color: #ccc;
+	cursor: pointer;
+}
+
+.focus-element {
+	background-color: yellowgreen;
+	cursor: pointer;
+}
+
 .selected {
 	background-color: green;
 }

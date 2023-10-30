@@ -38,9 +38,63 @@ const loadTables = (selectedTables = {}) => {
 					selectTable(chair.id);
 				});
 			}
+			chair.addEventListener('mouseenter', () => {
+				onFocus(chair.id);
+			});
+
+			chair.addEventListener('mouseleave', () => {
+				onBlur(chair.id);
+			});
 			chairs.appendChild(chair);
 		});
 	});
+};
+
+const getPosition = (chairId = '') => {
+	const [row, column] = chairId.split('-');
+	if (!row || !column) {
+		return {};
+	}
+	return {
+		row,
+		column,
+	};
+};
+
+const onFocus = (table) => {
+	const { row, column } = getPosition(table);
+	if (!row || !column) {
+		console.error('No se pudo obtener la posición de la mesa');
+		return;
+	}
+	const rowIndex = rows.indexOf(row);
+	const columnIndex = columns.indexOf(Number(column));
+	for (let j = 0; j < columnIndex; j++) {
+		const chair = document.getElementById(`${rows[rowIndex]}-${columns[j]}`);
+		chair.classList.add('focus-element');
+	}
+	for (let j = 0; j < rowIndex; j++) {
+		const chair = document.getElementById(`${rows[j]}-${columns[columnIndex]}`);
+		chair.classList.add('focus-element');
+	}
+};
+
+const onBlur = (table) => {
+	const { row, column } = getPosition(table);
+	if (!row || !column) {
+		console.error('No se pudo obtener la posición de la mesa');
+		return;
+	}
+	const rowIndex = rows.indexOf(row);
+	const columnIndex = columns.indexOf(Number(column));
+	for (let j = 0; j < columnIndex; j++) {
+		const chair = document.getElementById(`${rows[rowIndex]}-${columns[j]}`);
+		chair.classList.remove('focus-element');
+	}
+	for (let j = 0; j < rowIndex; j++) {
+		const chair = document.getElementById(`${rows[j]}-${columns[columnIndex]}`);
+		chair.classList.remove('focus-element');
+	}
 };
 
 const selectTable = (table) => {
