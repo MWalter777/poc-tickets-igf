@@ -1,0 +1,58 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ticket-container {
+	width: 650px;
+	min-height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #eee;
+	gap: 16px;
+}
+
+.ticket-container .ticket-scenary {
+	width: 100%;
+	height: 77px;
+	background: linear-gradient(to right, #222, #36384d);
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.chairs {
+	width: 100%;
+	background-color: red;
+	display: grid;
+	grid-template-columns: repeat(21, 1fr);
+	grid-auto-rows: 30px;
+	gap: 2px;
+}
+
+.col-chair,
+.chair-row {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.chair {
+	background-color: blue; /* Color del cuadro de la silla */
+	border: 1px solid black; /* Borde para resaltar los cuadros */
+}
+
+.selected {
+	background-color: green;
+}
+
+.selected-other-user {
+	background-color: yellow;
+}
